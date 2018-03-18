@@ -1,3 +1,44 @@
-<p>
-  signup works!
-</p>
+<form class="sign-up" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="">
+    <input matInput  type="email" placeholder="email" formControlName="email">
+    <mat-hint>Enter your email</mat-hint>
+    <mat-error *ngIf="form.controls.email.hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="form.controls.email.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="" hintLabel="Enter your password">
+    <input matInput  type="password" placeholder="password" formControlName="password" minlength="3">
+    <mat-hint align="end">{{form.controls.password.value.length}}/3</mat-hint>
+    <mat-error *ngIf="form.controls.password.errors?.minlength">
+      Password length should be at least 3 symbols
+    </mat-error>
+    <mat-error *ngIf="form.controls.password.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="birthday" formControlName="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-hint>Enter your birthday</mat-hint>
+  </mat-form-field>
+  
+
+  <mat-checkbox labelPosition="after" color="primary" formControlName="agree">Agree with Terms and Conditions</mat-checkbox>
+  
+  <button 
+    type="submit" 
+    mat-raised-button 
+    color="primary" 
+    [disabled]="!form.valid">
+    Signup
+  </button>
+
+</form>
