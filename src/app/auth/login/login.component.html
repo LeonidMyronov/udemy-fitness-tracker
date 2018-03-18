@@ -1,0 +1,16 @@
+<form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+  <mat-form-field>
+    <input type="email" matInput formControlName="email" placeholder="Email">
+    <mat-hint>Enter you email</mat-hint>
+    <mat-error *ngIf="loginForm.controls.email.hasError('email')">Enter correct email</mat-error>
+    <mat-error *ngIf="loginForm.controls.email.hasError('required')">Field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="password" matInput formControlName="password" placeholder="Password">
+    <mat-hint>Enter your password</mat-hint>
+    <mat-error *ngIf="loginForm.controls.password.hasError('required')">Field is required</mat-error>
+  </mat-form-field>
+
+  <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+</form>
