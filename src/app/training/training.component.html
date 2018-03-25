@@ -7,4 +7,4 @@
   </mat-tab>
 </mat-tab-group>
 
-<ft-current-training *ngIf="isTrainingStarted"></ft-current-training>
+<ft-current-training *ngIf="isTrainingStarted" (stopTraining)="isTrainingStarted = false"></ft-current-training>
