@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="menuButtonClicked.emit()" fxHide.gt-xs>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="logo">App LOGO</div>
+  <ul class="nav-menu" fxLayout fxLayoutGap="20px" fxHide.xs>
+    <li class="nav-menu__item">
+      <a routerLink="/login">Login</a>
+    </li>
+    <li class="nav-menu__item">
+      <a routerLink="/signup">Sign Up</a>
+    </li>
+    <li class="nav-menu__item">
+      <a routerLink="/training">Training</a>
+    </li>
+    <li class="nav-menu__item">
+      <a (click)="onLogout()">Log out</a>
+    </li>
+  </ul>
+</mat-toolbar>

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
+import { NavigationModule } from './navigation/navigation.module';
 
 
 import { AppComponent } from './app.component';
@@ -27,7 +28,8 @@ import { LoginComponent } from './auth/login/login.component';
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NavigationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
