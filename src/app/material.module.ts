@@ -9,16 +9,16 @@ import {
   MatSidenavModule,
   MatIconModule,
   MatToolbarModule, MatListModule, MatTabsModule, MatCardModule, MatSelectModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatDialogModule
 } from '@angular/material';
 
 @NgModule({
   imports: [MatInputModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatButtonModule,
     MatSidenavModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatListModule, MatTabsModule, MatCardModule, MatSelectModule,
-  MatProgressSpinnerModule],
+  MatProgressSpinnerModule, MatDialogModule],
   exports: [MatInputModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatButtonModule,
     MatSidenavModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatListModule, MatTabsModule, MatCardModule, MatSelectModule,
-  MatProgressSpinnerModule],
+  MatProgressSpinnerModule, MatDialogModule],
 })
 
 export class MaterialModule {}
