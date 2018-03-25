@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./training.component.sass']
 })
 export class TrainingComponent implements OnInit {
-
+  isTrainingStarted = false;
   constructor() { }
 
   ngOnInit() {
   }
 
+  onTrainingStarted() {
+    this.isTrainingStarted = true;
+  }
 }
