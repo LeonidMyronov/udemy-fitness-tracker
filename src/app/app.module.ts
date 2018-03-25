@@ -6,16 +6,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { NavigationModule } from './navigation/navigation.module';
+import { TrainingModule } from './training/training.module';
 
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
-import { TrainingComponent } from './training/training.component';
-import { NewTrainingComponent } from './training/new-training/new-training.component';
-import { PastTrainingComponent } from './training/past-training/past-training.component';
-import { CurrentTrainingComponent } from './training/current-training/current-training.component';
+
 
 
 @NgModule({
@@ -24,10 +22,6 @@ import { CurrentTrainingComponent } from './training/current-training/current-tr
     WelcomeComponent,
     SignupComponent,
     LoginComponent,
-    TrainingComponent,
-    NewTrainingComponent,
-    PastTrainingComponent,
-    CurrentTrainingComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +31,8 @@ import { CurrentTrainingComponent } from './training/current-training/current-tr
     FlexLayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NavigationModule
+    NavigationModule,
+    TrainingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
