@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav mode="over" #sidenav>
+    <ft-sidenav-list (closeSidenav)="sidenav.close()"></ft-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ft-header (menuButtonClicked)="sidenav.toggle()"></ft-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

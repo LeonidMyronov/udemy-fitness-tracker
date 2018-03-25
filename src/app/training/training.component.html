@@ -1,0 +1,10 @@
+<mat-tab-group *ngIf="!isTrainingStarted">
+  <mat-tab label="New Training">
+    <ft-new-training (newTrainingStarted)="onTrainingStarted()"></ft-new-training>
+  </mat-tab>
+  <mat-tab label="Past Training">
+    <ft-past-training></ft-past-training>
+  </mat-tab>
+</mat-tab-group>
+
+<ft-current-training *ngIf="isTrainingStarted" (stopTraining)="isTrainingStarted = false"></ft-current-training>
