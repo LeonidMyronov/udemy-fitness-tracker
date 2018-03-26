@@ -18,4 +18,7 @@ export class HeaderComponent implements OnInit {
     this.userState$ = this.authService.authChange;
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
 }
