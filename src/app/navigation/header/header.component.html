@@ -4,16 +4,16 @@
   </button>
   <div class="logo" routerLink="/">App LOGO</div>
   <ul class="nav-menu" fxLayout fxLayoutGap="20px" fxHide.xs>
-    <li class="nav-menu__item">
+    <li class="nav-menu__item" *ngIf="!(userState$ | async)">
       <a routerLink="/login">Login</a>
     </li>
-    <li class="nav-menu__item">
+    <li class="nav-menu__item" *ngIf="!(userState$ | async)">
       <a routerLink="/signup">Sign Up</a>
     </li>
-    <li class="nav-menu__item">
+    <li class="nav-menu__item" *ngIf="(userState$ | async)">
       <a routerLink="/training">Training</a>
     </li>
-    <li class="nav-menu__item">
+    <li class="nav-menu__item" *ngIf="(userState$ | async)">
       <a (click)="onLogout()">Log out</a>
     </li>
   </ul>

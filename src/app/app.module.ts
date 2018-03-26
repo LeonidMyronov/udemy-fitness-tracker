@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { TrainingModule } from './training/training.module';
 
+import { AuthService } from './auth/auth.service';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -34,7 +35,7 @@ import { LoginComponent } from './auth/login/login.component';
     NavigationModule,
     TrainingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
