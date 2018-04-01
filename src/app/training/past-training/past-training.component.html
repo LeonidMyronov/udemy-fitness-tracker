@@ -1,4 +1,10 @@
 <div class="">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <mat-form-field fxFlex="40%">
+      <input matInput type="text" placeholder="Filter" (keyup)="onFilter($event.target.value)">
+    </mat-form-field>
+  </div>
+  
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <!--- Note that these columns can be defined in any order.
