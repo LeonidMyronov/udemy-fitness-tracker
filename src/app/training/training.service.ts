@@ -10,10 +10,10 @@ export class TrainingService {
   private runningExercise: Exercise;
   private exercises: Exercise[] = [];
   private availabeExercises: Exercise[] = [
-    {id: 'crunches', name: 'Crunches', duration: 30, calories: 8},
-    {id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 14},
-    {id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 12},
-    {id: 'burpees', name: 'Burpees', duration: 60, calories: 10},
+    { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
+    { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 14 },
+    { id: 'side-lunges', name: 'Side Lunges', duration: 120, calories: 12 },
+    { id: 'burpees', name: 'Burpees', duration: 60, calories: 10 },
   ];
 
   constructor() { }
@@ -24,7 +24,7 @@ export class TrainingService {
 
   startExercise(id: string) {
     this.runningExercise = this.availabeExercises.find(e => e.id === id);
-    this.newTrainingStarted.next({...this.runningExercise});
+    this.newTrainingStarted.next({ ...this.runningExercise });
   }
 
   completeExercise() {
@@ -52,7 +52,7 @@ export class TrainingService {
   }
 
   getRunningExercise() {
-    return {...this.runningExercise};
+    return { ...this.runningExercise };
   }
 
   getPastExercises() {

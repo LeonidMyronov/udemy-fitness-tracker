@@ -6,7 +6,7 @@
         <mat-form-field>
 
           <mat-select placeholder="Choose your training" formControlName="exercise">
-            <mat-option *ngFor="let e of availableExercises" [value]="e.id">{{e.name}}</mat-option>
+            <mat-option *ngFor="let e of availableExercises | async" [value]="e.name">{{e.name}}</mat-option>
           </mat-select>
         
         </mat-form-field>
