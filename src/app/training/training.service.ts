@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Subject } from 'rxjs/Subject';
 
 import { Exercise } from './exercise.model';
@@ -7,6 +8,7 @@ import { Exercise } from './exercise.model';
 export class TrainingService {
 
   newTrainingStarted: Subject<Exercise> = new Subject();
+  availableExercisesChanged: Subject<Exercise[]> = new Subject();
   private runningExercise: Exercise;
   private exercises: Exercise[] = [];
   private availabeExercises: Exercise[] = [
@@ -16,14 +18,32 @@ export class TrainingService {
     { id: 'burpees', name: 'Burpees', duration: 60, calories: 10 },
   ];
 
-  constructor() { }
+  constructor(
+    private db: AngularFirestore
+  ) { }
 
-  getAvailableExercises() {
-    return [...this.availabeExercises];
+  fetchAvailableExercises() {
+    this.db.collection('availableExercises').snapshotChanges().map(
+      response => {
+        return response.map(r => {
+          const id = r.payload.doc.id;
+          const data = r.payload.doc.data() as Exercise;
+          return {
+            id: id,
+            ...data
+          };
+        });
+      }
+    )
+    .subscribe( (response: Exercise[]) => {
+      this.availabeExercises = response;
+      this.availableExercisesChanged.next([...this.availabeExercises]);
+    });
   }
 
   startExercise(id: string) {
     this.runningExercise = this.availabeExercises.find(e => e.id === id);
+    console.log('runningExercise => ', this.runningExercise);
     this.newTrainingStarted.next({ ...this.runningExercise });
   }
 
@@ -52,7 +72,7 @@ export class TrainingService {
   }
 
   getRunningExercise() {
-    return { ...this.runningExercise };
+    return {...this.runningExercise};
   }
 
   getPastExercises() {
