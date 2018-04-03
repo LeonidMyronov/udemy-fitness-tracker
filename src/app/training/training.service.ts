@@ -9,8 +9,9 @@ export class TrainingService {
 
   newTrainingStarted: Subject<Exercise> = new Subject();
   availableExercisesChanged: Subject<Exercise[]> = new Subject();
+  finishedExercisesChanged: Subject<Exercise[]> = new Subject();
   private runningExercise: Exercise;
-  private exercises: Exercise[] = [];
+  // private exercises: Exercise[] = [];
   private availabeExercises: Exercise[] = [
     { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
     { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 14 },
@@ -48,18 +49,17 @@ export class TrainingService {
   }
 
   completeExercise() {
-    this.exercises.push({
+    this.addDataToDatabase({
       ...this.runningExercise,
       date: new Date(),
       state: 'completed'
     });
     this.runningExercise = null;
     this.newTrainingStarted.next(null);
-    console.log('past-exercises =>', this.exercises);
   }
 
   cancelExercise(progress: number) {
-    this.exercises.push({
+    this.addDataToDatabase({
       ...this.runningExercise,
       date: new Date(),
       duration: this.runningExercise.duration * (progress / 100),
@@ -68,15 +68,23 @@ export class TrainingService {
     });
     this.runningExercise = null;
     this.newTrainingStarted.next(null);
-    console.log('past-exercises =>', this.exercises);
+  }
+
+  private addDataToDatabase(data: Exercise) {
+    this.db.collection('finishedExercises').add(data);
+
   }
 
   getRunningExercise() {
     return {...this.runningExercise};
   }
 
-  getPastExercises() {
-    return [...this.exercises];
+  fetchPastExercises() {
+    this.db.collection('finishedExercises')
+      .valueChanges()
+      .subscribe(
+        (exercises: Exercise[]) => this.finishedExercisesChanged.next(exercises)
+      );
   }
 
 }
