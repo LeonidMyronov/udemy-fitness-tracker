@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TrainingRoutingModule } from './training-routing.module';
 
 import { TrainingComponent } from './training.component';
 import { NewTrainingComponent } from './new-training/new-training.component';
@@ -22,7 +23,8 @@ import { StopTrainingComponent } from './current-training/stop-training.componen
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TrainingRoutingModule,
   ],
   exports: [
 

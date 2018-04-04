@@ -5,16 +5,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AuthModule } from './auth/auth.module';
 import { NavigationModule } from './navigation/navigation.module';
-import { TrainingModule } from './training/training.module';
 
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { LoginComponent } from './auth/login/login.component';
+import { environment } from '../environments/environment';
 
 
 
@@ -22,19 +23,20 @@ import { LoginComponent } from './auth/login/login.component';
   declarations: [
     AppComponent,
     WelcomeComponent,
-    SignupComponent,
-    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     // NoopAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
     NavigationModule,
-    TrainingModule
+    AuthModule,
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent]
