@@ -25,7 +25,6 @@ export class AuthService {
         if (state) {
           this.onSuccessAuth();
         } else {
-          this.trainingService.cancelSubscription();
           this.isAuthenticated = false;
           this.authChange.next(false);
           this.router.navigate(['/']);
@@ -54,6 +53,7 @@ export class AuthService {
   }
 
   logout() {
+    this.trainingService.cancelSubscription();
     this.afAuth.auth.signOut();
   }
 

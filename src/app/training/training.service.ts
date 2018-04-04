@@ -12,7 +12,7 @@ export class TrainingService {
   availableExercisesChanged: Subject<Exercise[]> = new Subject();
   finishedExercisesChanged: Subject<Exercise[]> = new Subject();
   private runningExercise: Exercise;
-  private fbSubs: Subscription[];
+  private fbSubs: Subscription[] = [];
   private availabeExercises: Exercise[] = [
     { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
     { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 14 },
