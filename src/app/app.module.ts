@@ -9,7 +9,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AuthModule } from './auth/auth.module';
 import { NavigationModule } from './navigation/navigation.module';
-import { TrainingModule } from './training/training.module';
 
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
@@ -38,7 +37,6 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     NavigationModule,
     AuthModule,
-    TrainingModule
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent]

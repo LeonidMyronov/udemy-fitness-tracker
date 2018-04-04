@@ -4,6 +4,7 @@ import { MaterialModule } from "../material.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AuthRoutingModule } from "./auth-routing.module";
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
@@ -19,7 +20,8 @@ import { LoginComponent } from "./login/login.component";
     MaterialModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    AngularFireAuthModule
   ],
   exports: []
 })
