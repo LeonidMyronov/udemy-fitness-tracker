@@ -17,7 +17,7 @@ import { TrainingService } from './training/training.service';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { environment } from '../environments/environment';
-import { appReducer } from './app.reducer';
+import { reducers } from './app.reducer';
 
 
 
@@ -39,7 +39,7 @@ import { appReducer } from './app.reducer';
     ReactiveFormsModule,
     NavigationModule,
     AuthModule,
-    StoreModule.forRoot({ui: appReducer})
+    StoreModule.forRoot(reducers)
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent]

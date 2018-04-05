@@ -8,7 +8,8 @@ import { TrainingService } from '../training/training.service';
 
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
-import * as fromApp from '../app.reducer';
+import * as fromRoot from '../app.reducer';
+import * as UIAction from '../shared/ui.actions';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
     private router: Router,
     private trainingService: TrainingService,
     private afAuth: AngularFireAuth,
-    private store: Store<{ui: fromApp.State}>
+    private store: Store<fromRoot.State>
   ) {}
 
   initAuthListener() {
@@ -37,29 +38,29 @@ export class AuthService {
   }
 
   signup(authData: AuthData) {
-    this.store.dispatch({type: 'START_LOADING'});
+    this.store.dispatch(new UIAction.StartLoading());
     console.log('signup authData: ', authData);
     this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password)
       .then(response => {
         console.log(response);
-        this.store.dispatch({type: 'STOP_LOADING'});
+        this.store.dispatch(new UIAction.StopLoading());
   })
       .catch(error => {
         console.log(error);
-        this.store.dispatch({type: 'STOP_LOADING'});
+        this.store.dispatch(new UIAction.StopLoading());
       });
   }
 
   login(authData: AuthData) {
-    this.store.dispatch({type: 'START_LOADING'});
+    this.store.dispatch(new UIAction.StartLoading());
     this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
     .then(response => {
       console.log(response);
-      this.store.dispatch({type: 'STOP_LOADING'});
+      this.store.dispatch(new UIAction.StopLoading());
 })
     .catch(error => {
       console.log(error);
-      this.store.dispatch({type: 'STOP_LOADING'});
+      this.store.dispatch(new UIAction.StopLoading());
     });
   }
 
