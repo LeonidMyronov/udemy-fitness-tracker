@@ -10,9 +10,11 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AuthModule } from './auth/auth.module';
 import { NavigationModule } from './navigation/navigation.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
+// import { UIService } from './shared/ui.service';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -37,11 +39,16 @@ import { reducers } from './app.reducer';
     FlexLayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
     NavigationModule,
     AuthModule,
     StoreModule.forRoot(reducers)
   ],
-  providers: [AuthService, TrainingService],
+  providers: [
+    AuthService,
+    TrainingService,
+    // UIService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
