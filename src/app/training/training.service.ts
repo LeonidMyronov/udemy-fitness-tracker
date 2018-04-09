@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
+import { UIService } from '../shared/ui.service';
+
 import { Exercise } from './exercise.model';
 import * as fromRoot from '../app.reducer';
 import * as UIAction from '../shared/ui.actions';
@@ -25,7 +27,8 @@ export class TrainingService {
 
   constructor(
     private db: AngularFirestore,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private uiService: UIService
   ) { }
 
   fetchAvailableExercises() {
@@ -43,11 +46,18 @@ export class TrainingService {
           });
         }
       )
-      .subscribe( (response: Exercise[]) => {
+      .subscribe(
+        (response: Exercise[]) => {
         this.availabeExercises = response;
         this.availableExercisesChanged.next([...this.availabeExercises]);
         this.store.dispatch(new UIAction.StopLoading());
-      })
+      },
+      error => {
+        this.store.dispatch(new UIAction.StopLoading());
+        this.availableExercisesChanged.next(null);
+        this.uiService.showSnackBarMessage('Error while fetching data. Please try again later.', null, 3000);
+      }
+      )
     );
   }
 
