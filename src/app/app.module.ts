@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -16,6 +17,7 @@ import { TrainingService } from './training/training.service';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { environment } from '../environments/environment';
+import { reducers } from './app.reducer';
 
 
 
@@ -37,6 +39,7 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     NavigationModule,
     AuthModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent]
