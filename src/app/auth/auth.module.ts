@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LoginComponent } from "./login/login.component";
     ReactiveFormsModule,
     FlexLayoutModule,
     AuthRoutingModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    SharedModule
   ],
   exports: []
 })

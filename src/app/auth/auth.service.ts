@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Subject } from 'rxjs/Subject';
 
 import { TrainingService } from '../training/training.service';
+import { UIService } from '../shared/ui.service';
 
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
@@ -20,7 +21,8 @@ export class AuthService {
     private router: Router,
     private trainingService: TrainingService,
     private afAuth: AngularFireAuth,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private uiService: UIService
   ) {}
 
   initAuthListener() {
@@ -47,6 +49,7 @@ export class AuthService {
   })
       .catch(error => {
         console.log(error);
+        this.uiService.showSnackBarMessage(error.message, null, 3000);
         this.store.dispatch(new UIAction.StopLoading());
       });
   }
@@ -60,6 +63,7 @@ export class AuthService {
 })
     .catch(error => {
       console.log(error);
+      this.uiService.showSnackBarMessage(error.message, null, 3000);
       this.store.dispatch(new UIAction.StopLoading());
     });
   }
