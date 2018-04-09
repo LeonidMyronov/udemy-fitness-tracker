@@ -31,11 +31,14 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
       .subscribe( (response: Exercise[]) => this.availableExercises = response);
 
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
-    this.trainingService.fetchAvailableExercises();
-
+    this.fetchAvailableExercises();
     this.newTrainingForm = new FormGroup({
       exercise: new FormControl(null, [Validators.required])
     });
+  }
+
+  fetchAvailableExercises() {
+    this.trainingService.fetchAvailableExercises();
   }
 
   onSubmit() {
