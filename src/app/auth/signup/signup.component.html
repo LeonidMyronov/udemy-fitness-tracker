@@ -34,11 +34,13 @@
   <mat-checkbox labelPosition="after" color="primary" formControlName="agree">Agree with Terms and Conditions</mat-checkbox>
   
   <button 
+    *ngIf="!(isLoading$ | async)"
     type="submit" 
     mat-raised-button 
     color="primary" 
     [disabled]="!form.valid">
     Signup
   </button>
+  <mat-spinner *ngIf="(isLoading$ | async)"></mat-spinner>
 
 </form>
