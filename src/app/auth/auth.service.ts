@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Subject } from 'rxjs/Subject';
+import { MatSnackBar } from '@angular/material';
 
 import { TrainingService } from '../training/training.service';
 
@@ -20,7 +21,8 @@ export class AuthService {
     private router: Router,
     private trainingService: TrainingService,
     private afAuth: AngularFireAuth,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    public matSnackBar: MatSnackBar
   ) {}
 
   initAuthListener() {
@@ -43,10 +45,12 @@ export class AuthService {
     this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password)
       .then(response => {
         console.log(response);
+        this.matSnackBar.open(response.message);
         this.store.dispatch(new UIAction.StopLoading());
   })
       .catch(error => {
         console.log(error);
+        this.matSnackBar.open(error.message);
         this.store.dispatch(new UIAction.StopLoading());
       });
   }
@@ -56,10 +60,12 @@ export class AuthService {
     this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
     .then(response => {
       console.log(response);
+      this.matSnackBar.open(response.message);
       this.store.dispatch(new UIAction.StopLoading());
 })
     .catch(error => {
       console.log(error);
+      this.matSnackBar.open(error.message);
       this.store.dispatch(new UIAction.StopLoading());
     });
   }
