@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Exercise } from './exercise.model';
+import * as fromRoot from '../app.reducer';
+import * as UIAction from '../shared/ui.actions';
 
 @Injectable()
 export class TrainingService {
@@ -21,10 +24,12 @@ export class TrainingService {
   ];
 
   constructor(
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private store: Store<fromRoot.State>
   ) { }
 
   fetchAvailableExercises() {
+    this.store.dispatch(new UIAction.StartLoading());
     this.fbSubs.push(
       this.db.collection('availableExercises').snapshotChanges().map(
         response => {
@@ -41,6 +46,7 @@ export class TrainingService {
       .subscribe( (response: Exercise[]) => {
         this.availabeExercises = response;
         this.availableExercisesChanged.next([...this.availabeExercises]);
+        this.store.dispatch(new UIAction.StopLoading());
       })
     );
   }
