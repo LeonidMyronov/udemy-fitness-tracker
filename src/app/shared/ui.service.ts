@@ -11,7 +11,6 @@ export class UIService {
   ) {}
 
   showSnackBarMessage(message, action, duration) {
-    debugger;
     this.snackBar.open(message, action, {duration: duration});
   }
 

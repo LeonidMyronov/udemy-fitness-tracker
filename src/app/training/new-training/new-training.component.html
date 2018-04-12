@@ -5,7 +5,7 @@
       <mat-card-content>
         <mat-form-field *ngIf="!(isLoading$ | async) && availableExercises" >
 
-          <mat-selectplaceholder="Choose your training" formControlName="exercise">
+          <mat-select placeholder="Choose your training" formControlName="exercise">
             <mat-option *ngFor="let e of availableExercises" [value]="e.id">{{e.name}}</mat-option>
           </mat-select>
           
